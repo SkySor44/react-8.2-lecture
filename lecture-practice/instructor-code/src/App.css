@@ -30,11 +30,9 @@
 .list {
   border: 1px solid lightblue;
   padding: 16px;
-
 }
-
-.list>li, .list>ul {
-    border: 1px solid lightsalmon;
-    margin: 2px;
-    padding: 4px;
+.list>li, .list>div {
+  border: 1px solid lightsalmon;
+  margin: 2px;
+  padding: 4px;
 }

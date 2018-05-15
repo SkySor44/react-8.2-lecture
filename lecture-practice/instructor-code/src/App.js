@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-      <div>
+        <div>
           <h3>Progress Bar</h3>
           <div style={{ width: 200, margin: 5, borderRadius: 5, height: 10, backgroundColor: 'gray' }}>
-            <div style={{ height: '100%', width: '52%', backgroundColor: 'red', borderRadius: 5 }}></div>
+            <div style={{ height: '100%', width: '52%', backgroundColor: 'red' }}></div>
           </div>
         </div>
         <Button type="primary">Click me</Button>
@@ -24,54 +24,62 @@ class App extends Component {
           <List
             data={[1, 2, 3, 5, 1, 3, 2]}
             renderItem={(num, i) => <li key={i}>{num}</li>} />
-          <List data = {['hello', 'run', 'stop', 'goodbye', 'yes']} renderItem = { (words, i) => <ul key = {i}>{words}!</ul>}/>
+          <List
+            data={["Hello", "Good bye", "Wheres the syrup"]}
+            renderItem={(words, i) => (
+              <div style={{ padding: 3 }}>{words + ", eh"}</div>
+            )}
+          />
         </div>
         <div>
-          <StyledButton primary size = {'medium'}>Words</StyledButton>
-          <StyledButton>Words</StyledButton>
+          <StyledButton primary size="large">Words</StyledButton>
+          <StyledButton >Words</StyledButton>
         </div>
-      </div>
+
+      </div >
     );
   }
 }
 
 export default App;
 
+
 const fontSizes = {
   small: '14px',
   medium: '22px',
   large: '64px'
 }
-
 const StyledButton = styled.button`
-  background-color: ${props => props.primary ? 'salmon' : 'white'};
+  background-color: ${ props => props.primary ? 'salmon' : 'white'};
   color: ${props => props.primary ? 'white' : 'salmon'};
-  border: ${props => props.primary ? '' : '2px solid salmon'};
+  border: ${props => props.primary ? '1px solid salmon' : '2px solid salmon'}
   border-radius: 5px;
+  font-size: ${props => fontSizes[props.size]};
   padding: 4px;
-  font-size: ${props => fontSizes[props.size]}
 `
 
+
 class List extends Component {
-  render() { 
-    const {data, renderItem} = this.props;
-    const listItems = data.map((num, i) => renderItem(num, i));
-    return ( 
-      <div className = 'list'>
-      {listItems}
+  render() {
+    const { data, renderItem } = this.props;
+    const listItems = data.map((num, i) => renderItem(num, i))
+
+    return (
+      <div className="list">
+        {listItems}
       </div>
-     )
+    )
   }
 }
 
-class Button extends Component {
-  render(){
 
-    //need type from props
+
+class Button extends Component {
+  render() {
     const { type, children } = this.props;
-    const styleChoice = styles[type ? type : 'default']; //choose inline styling based on the type passed in. Use Object.assign to create a whole new object with base attributes and conditional. Really shortens the amount of code to write. Ternary is just differ to default
+    const styleChoice = styles[type ? type : 'default']
     return (
-      <button style={Object.assign({}, btnBase, styleChoice)}>{children}</button> //Makes it so you can access the "Click Me" placed between the Button component tags in the App class render. This makes a Higher Order Component
+      <button style={Object.assign({}, btnBase, styleChoice)}>{children}</button>
     );
   }
 }
@@ -79,6 +87,7 @@ class Button extends Component {
 Button.propTypes = {
   type: PropTypes.string
 }
+
 
 
 let btnBase = {
